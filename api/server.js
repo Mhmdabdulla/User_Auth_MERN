@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import userRoute from './routes/user.routes.js'
 import authRouter from './routes/auth.route.js'
+import adminRoute from './routes/admin.router.js'
 import cookieParser from 'cookie-parser';
 
 
@@ -17,8 +18,9 @@ mongoose.connect(process.env.MONGO_URL)
 
 app.listen(3000, ()=> console.log('server running on',3000));
 
-app.use('/api/user',userRoute);
-app.use('/api/auth',authRouter)
+app.use('/api/user', userRoute);
+app.use('/api/auth', authRouter)
+app.use('/api/admin', adminRoute)
 
 app.use((err,req,res,next)=>{
     const statuscode = err.statuscode || 500;
